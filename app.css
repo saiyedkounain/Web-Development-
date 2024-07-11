@@ -1,0 +1,7 @@
+.yo {
+    display: flex;
+    justify-content: center;
+}
+.bold {
+    font-weight: 500;
+}

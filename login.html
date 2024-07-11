@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="favicon. ico" type="image/x-icon" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link rel="stylesheet" href="newForm.css">
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+    <div class="container">
+    
+        <div class="card m-5">
+    
+            <div class="heading">
+                <p>Log In</p>
+            </div>
+            <div class="cardin">
+                <form onsubmit="logIn()" method="get">
+                    <label class="labels" for="logusername">Userame </label>
+                    <input class="inputs" type="text" id="logusername" required> <br>
+                    <label class="labels" for="logpass">Password</label>
+                    <input class="inputs" type="password" id="logpass" required> <br>
+                    
+                    <input class="btn btn-success" type="submit" id="submitBtn" value="Log In">
+
+                </form>
+            </div>
+    
+        </div>
+    
+    
+    </div>
+    
+    
+</body>
+<script src="forms.js">
+        function logIn() {
+                let logusername = document.getElementById('logusername');
+                let logpass = document.getElementById("logpass");
+
+                if (logusername == username && logpass == pass) {
+                    alert("Fcuk Yeah")
+                }
+            }
+</script>
+</html>

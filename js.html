@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <h1 id="e2">Dilleep</h1> 
+   <button id ="btn" onclick="changeName()"> Click ME</button>
+   
+</body>
+<script>
+    
+    let btn = document.getElementById("btn");
+    
+    function changeName(){
+        let newName = prompt("Enter new name")
+        let name = document.getElementById("e2");
+        name.textContent = newName;
+    }
+   
+</script>
+</html>

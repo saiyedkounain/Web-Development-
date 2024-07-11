@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="icon" href="favicon. ico" type="image/x-icon" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="newForm.css">
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+
+<body id="rootHead">
+    <div class="head">
+        <h3>Register</h3>
+    </div>
+
+    <div class="container" id="prevCard">
+
+        <div class="card m-5">
+
+            <div class="heading">
+                <p>Getting you started</p>
+            </div>
+            <div class="cardin">
+                <form id="myForm" onsubmit="return validate()" method="get">
+                    <label class="labels" for="name">Name </label>
+                    <input class="inputs" type="text" id="name" > <br>
+                    <label class="labels" for="uname">Choose a Username </label>
+                    <input class="inputs" type="text" id="user" required> <br>
+                    <label class="labels" for="email">Email </label>
+                    <input class="inputs" type="email" id="email" > <br>
+                    <label class="labels" for="phone">Phone Number</label>
+                    <input class="inputs" type="tel" id="phone" inputmode="numeric" >
+                    <br>
+                    <label class="labels" for="userClg">Institution</label>
+                    <select id="userClg">
+                        <option value="cpc">CPC Polytechnic</option>
+                        <option value="philos">St. Philomenas</option>
+                        <option value="vikas">Vidya Vikas</option>
+                        <option value="dbm">D. Banumaihias</option>
+                    </select>
+
+                    <br>
+
+                    <label for="regNo" class="labels mt-3">Register Number</label>
+                    <div class="regNoSection">
+                        <h4 id="clgNo">108</h4>
+                        <input type="text" id="regNo" class="inputs" >
+
+                    </div>
+                    <div class="genderSection">
+                        <p class="labels">Gender</p>
+
+                        <input type="radio" name="gender" value="1" id="male">
+                        <label for="male">Male</label>
+
+                        <input type="radio" name="gender" value="0" id="female">
+                        <label for="female">Female</label>
+                    </div>
+                    <div class="passwords">
+                        <label class="labels" for="password">Create a Password</label>
+                        <input class="inputs" type="text" id="password" required>
+                        <label class="labels" for="password">Confirm Password</label>
+                        <input class="inputs" type="text" id="cpassword" required>
+                    </div>
+                    <div class="updatee">
+                        <input type="checkbox" id="updates">
+                        <label for="updates">Receive Updates</label> <br>
+                        <input type="checkbox" id="agreements">
+                        <label for="agreements">I have read and agreed to the <a href="#">Terms and
+                                Conditions</a></label>
+                    </div>
+                    <br>
+                    <div class="btns">
+
+                        <input class="btn btn-success" type="submit" id="submitBtn" value="Sign In">
+                        <input class="btn btn-warning" type="reset" value="Clear">
+                    </div>
+
+
+                </form>
+            </div>
+
+        </div>
+
+
+    </div>
+
+                
+
+
+</body>
+<script>
+
+
+    let myForm = document.getElementById("myForm");
+    let saveUser = false;
+
+
+
+    const selectCollege = document.getElementById('userClg');
+    const collegeNumber = document.getElementById('clgNo');
+
+    selectCollege.addEventListener('change', function () {
+
+        const selectedCollege = selectCollege.value;
+
+
+
+        if (selectedCollege == 'philos') {
+            collegeNumber.textContent = 109;
+        } else if (selectedCollege == 'cpc') {
+            collegeNumber.textContent = 108;
+        } else if (selectedCollege == 'vikas') {
+            collegeNumber.textContent = 110;
+        } else {
+            collegeNumber.textContent = 114;
+        }
+    });
+
+    let errorMessage = document.createElement("div");
+    errorMessage.className = "errorMessage";
+    errorMessage.id = "errMsg";
+    errorMessage.innerHTML = `<p>The Passwords do not match!!</p>`
+
+
+    function validate() {
+        event.preventDefault();
+        let pass = document.getElementById("password").value;
+        let cpass = document.getElementById("cpassword").value;
+        let cpassbox = document.getElementById("cpassword");
+        let parentList = cpassbox.parentElement;
+        if (pass == cpass) {
+            if (cpass.nextElementSibling == errorMessage) {
+                errorMessage.innerHTML = `<p> Passwords Match </p>`
+                errorMessage.className = "greenMsg";
+            }
+            
+            success();
+        } else {
+            parentList.append(errorMessage);
+            return false;
+        }
+        
+    }
+    
+    function success() {
+        
+        let body = document.getElementById("rootHead");
+        let prevCard = document.getElementById("prevCard");
+        let name = document.getElementById("name").value;
+        let username = document.getElementById("user").value;
+        let pass = document.getElementById("password").value;
+        let number = document.getElementById("phone").value;
+        let regNo = document.getElementById("regNo").value;
+        let card = document.createElement("div");
+
+        //storing user details
+        var ruser = localStorage.setItem("username",username);        
+        var rpass = localStorage.setItem("password",pass);        
+
+        card.id = "successCard";
+        card.className = "successCard";
+        card.innerHTML = `<div class="cardin2">
+            <h3 class="btn btn-success">Registeration Successful!!</h3>
+            <p>
+                Welcome,<b> ${name} </b>!! <br>
+                Your username is <b>${username}</b>, <br>
+                You have registered with <b>${regNo}</b> register number. <br>
+                Please follow the link sent to your mobile number ${number}
+                </p>
+                <h3 class="btn btn-success" onclick="logIn()">Log In with your Password </h3>        
+            </div>`;
+
+        
+        body.replaceChild(card, prevCard);
+
+    }
+
+    function logIn(){
+        let body = document.getElementById("rootHead");
+        let prevCard = document.getElementById("successCard");
+
+        let logInCard = document.createElement("div");
+        logInCard.className = "container";
+        logInCard.innerHTML = `<div class="card m-5">
+    
+            <div class="heading">
+                <p>Log In</p>
+            </div>
+            <div class="cardin">
+                <form onsubmit="validateLogIn()" method="get">
+                    <label class="labels" for="logusername">Userame </label>
+                    <input class="inputs" type="text" id="logusername" required> <br>
+                    <label class="labels" for="logpass">Password</label>
+                    <input class="inputs" type="password" id="logpass" required> <br>
+                    
+                    <input class="btn btn-success" type="submit" id="submitBtn" value="Log In">
+
+                </form>
+            </div>
+    
+        </div>`
+        body.replaceChild(logInCard, prevCard)
+    }
+
+    function validateLogIn(){
+        event.preventDefault();
+        let Lusername = document.getElementById("logusername").value;
+        let Lpass = document.getElementById("logpass").value;
+        
+
+        let username = localStorage.getItem("username");
+        let pass = localStorage.getItem("password");
+        errMsgExists = false;
+
+
+        if (Lusername == username && Lpass == pass){
+            
+            alert("Login Success")
+            Redirect();
+            
+        }else {
+            
+            let errorMessage = document.createElement("div");
+            errorMessage.className = "errorMessage";
+            errorMessage.id = "errMsg";
+            errorMessage.innerHTML = `<p>Invalid Username or password!!</p>`;
+
+            let passbox = document.getElementById("logpass");
+            let parentList = passbox.parentElement;
+
+            parentList.append(errorMessage);
+            errMsgExists = true;
+            
+            if(errMsgExists){
+                errorMessage.remove();
+            }
+            
+        }
+    }
+    function Redirect() {
+        
+        window.location = "app.html";
+    }
+</script>
+
+</html>

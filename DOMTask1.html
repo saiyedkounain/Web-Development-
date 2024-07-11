@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adding List Elements</title>
+</head>
+<body class="blah">
+
+    <h1> Create List Elements</h1>
+    
+</body>
+    <script>
+        let k = prompt('Number of Tasks to add:');
+        for (let i=1; i<=k; i++){
+            let item = prompt('Enter new item');
+            let newDiv = document.createElement('p');
+            newDiv.textContent = item;
+            let body = document.querySelector('.blah')
+            body.appendChild(newDiv);
+            console.log(item)   
+        }
+        let para = document.querySelector('p');
+        para.style.backgroundColor = 'green';
+
+
+
+    </script>
+</html>

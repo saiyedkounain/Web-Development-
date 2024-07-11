@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="fastStyle.css">
+    
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="heads">
+                <h1>Log In</h1>
+            </div>
+        </div>
+        <div class="card2">
+                            <form onsubmit="logIn()" method="get">
+                                <div class="subcards">
+                                    <label class="labels" for="logusername">Userame </label>
+                                    <input class="inputs" type="text" id="logusername" required> 
+
+                                </div>
+                                <div class="subcards">
+
+                                    <label class="labels" for="logpass">Password</label>
+                                    <input class="inputs" type="password" id="logpass" required> <button class="showBtn" onclick="show(this)">Show</button>
+                                </div>
+                            
+                                <input type="submit" id="submitBtn" value="Log In">
+                            
+                            </form>
+        </div>
+    </div>
+</body>
+<script>
+    function show(e){
+        let passField = e.previousElementSibling;
+        console.log(passField)
+        if (e.textContent == "Show"){
+            passField.type = "text"
+            e.textContent = "Hide"
+        }else {
+            passField.type = "password"
+            e.textContent = "Show"
+
+        }
+    }
+</script>
+</html>
